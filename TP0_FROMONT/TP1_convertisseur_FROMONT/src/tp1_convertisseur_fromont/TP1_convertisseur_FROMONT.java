@@ -25,35 +25,43 @@ public class TP1_convertisseur_FROMONT {
         nbre1 = sc.nextDouble();
         int numero;
         Scanner nu = new Scanner(System.in);
-        System.out.println("\n Saisissez la conversion que vous souhaiter effectuer en ecrivant le numéro correspondant: /n" +
-"1) De Celcius vers Kelvin\n" +
-"2) De Kelvin vers Celcius \n" +
-"3) FarenheitVersCelcius \n" +
-"4) elciusVersFarenheit \n" + 
-"5) KelvinVersFarenheit \n" +
-"6) De Farenheit vers Kelvin ");
-        numero = sc.nextInt();
+        System.out.println("""
+                           
+                            Saisissez la conversion que vous souhaiter effectuer en ecrivant le numero correspondant:
+                           1) De Celcius vers Kelvin
+                           2) De Kelvin vers Celcius 
+                           3) FarenheitVersCelcius 
+                           4) elciusVersFarenheit 
+                           5) KelvinVersFarenheit 
+                           6) De Farenheit vers Kelvin """);
+        numero = nu.nextInt();
+        double resultat;
+        
         if (numero ==1) {
-            System.out.println("\n La température est " +tKelvin);
+            resultat = CelciusVersKelvin(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
         if (numero == 2) {
-            System.out.println("\n La température est " +Celcius);
+            resultat = KelvinVersCelcius(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
         if (numero == 3) {
-            System.out.println("\n La température est " +tCel);
+            resultat = FarenheitVersCelcius(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
         if (numero == 4) {
-            System.out.println("\n La température est " +tFa);
+            resultat = CelciusVersFarenheit(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
         if (numero == 5) {
-            System.out.println("\n La température est " +tF);
+            resultat = KelvinVersFarenheit(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
         if (numero == 6) {
-            System.out.println("\n La température est " +TK);
+            resultat = FarenheitVersKelvin(nbre1);
+            System.out.println("\n La température est " + resultat);
         }
-        double resultat;
-        resultat= nbre1 +273.15;
-        System.out.println("\n La température en degré Kelvin est " + resultat);
+        
     }
     public static double CelciusVersKelvin (double tCelcius) {
         double tKelvin = tCelcius + 273.15;
