@@ -22,13 +22,13 @@ public class TP2_Bieres_FROMONT {
         uneBiere.degreAlcool = 7.0 ;
         uneBiere.brasserie = "Dubuisson";
         uneBiere.ouverte = false;
-        uneBiere.lireEtiquette()
+        uneBiere.lireEtiquette();
         BouteilleBiere deuxiemeBiere = new BouteilleBiere() ;
         deuxiemeBiere.Nom = "Leffe";
         deuxiemeBiere.degreAlcool = 6.6 ;
         deuxiemeBiere.brasserie = "Abbaye de Leffe";
         deuxiemeBiere.ouverte = false;
-        deuxiemeBiere.lireEtiquette()
+        deuxiemeBiere.lireEtiquette();
 
     }
     
