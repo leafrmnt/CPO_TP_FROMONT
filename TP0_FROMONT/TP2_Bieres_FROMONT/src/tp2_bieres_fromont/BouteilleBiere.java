@@ -9,11 +9,12 @@ package tp2_bieres_fromont;
  *
  * @author leafr
  */
-public class BouteilleBiere {
-    String Nom; 
-    double degreAlcool;
-    String brasserie;
-    boolean ouverte;
+public BouteilleBiere(String unNom, float unDegre, String uneBrasserie) {
+ nom = unNom;
+ degreAlcool = unDegre;
+ brasserie = uneBrasserie;
+ ouverte = false;
+
     public void lireEtiquette() {
         System.out.println("Bouteille de " + Nom +" (" + degreAlcool +" degres) \nBrasserie : " + brasserie ) ;
     }
