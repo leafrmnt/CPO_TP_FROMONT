@@ -12,12 +12,12 @@ package tp2_convertisseurobjet_fromont;
 public class Convertisseur {
     private int nbConversions;
     public Convertisseur() {
-        nbConversions = 0; //initialisation nb de conversions
+        nbConversions = 0; 
     }
-    public void CelsiusVersFahrenheit(double celsius) { //conversion celsius vers fahrenheit
-        double fahrenheit = (celsius*9/5) + 32; //calcul de la température en fahrenheit
-        nbConversions++; //+1 au compteur de nb de conversions
-        System.out.println(celsius + " °C = " + fahrenheit + " °F"); //affichage résulat
+    public void CelsiusVersFahrenheit(double celsius) { 
+        double fahrenheit = (celsius*9/5) + 32; 
+        nbConversions++; 
+        System.out.println(celsius + " °C = " + fahrenheit + " °F"); 
     }
     public void CelsiusVersKelvin(double celsius) {
         double kelvin = celsius+273.15;
