@@ -9,14 +9,46 @@ package tp2_bieres_fromont;
  *
  * @author leafr
  */
-public BouteilleBiere(String unNom, float unDegre, String uneBrasserie) {
- nom = unNom;
- degreAlcool = unDegre;
- brasserie = uneBrasserie;
- ouverte = false;
+public class BouteilleBiere {
+    String nom;
+    float degreAlcool;
+    String brasserie;
+    boolean ouverte;
 
-    public void lireEtiquette() {
-        System.out.println("Bouteille de " + Nom +" (" + degreAlcool +" degres) \nBrasserie : " + brasserie ) ;
+ 
+
+
+
+    public BouteilleBiere(String unNom, double unDegre, String uneBrasserie) {
+        nom = unNom;
+        degreAlcool = (float) unDegre;
+        brasserie = uneBrasserie;
+        ouverte = false;
+        
     }
+    public boolean Decapsuler() {
+        if (!ouverte) {
+            ouverte = true;
+            return true;
+        } else {
+            return false;
+        }
+    
+}
+    @Override
+public String toString() {
+    String chaine_a_retourner = nom + " (" + degreAlcool + " degrés) Ouverte ? ";
+    if (ouverte) {
+        chaine_a_retourner += "oui";
+    } else {
+        chaine_a_retourner += "non";
+    }
+    return chaine_a_retourner;
 }
 
+    public void lireEtiquette() {
+        System.out.println("Bouteille de " + nom +" (" + degreAlcool +" degres) \nBrasserie : " + brasserie ) ;
+    }
+    
+
+}
