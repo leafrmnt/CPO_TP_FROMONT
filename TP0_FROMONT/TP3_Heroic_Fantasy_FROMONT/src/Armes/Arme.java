@@ -20,7 +20,7 @@ public abstract class Arme {
         if (niveauAttaque <= 100) {
             this.niveauAttaque = niveauAttaque;
         } else {
-            this.niveauAttaque = 100; // Assure que le niveau d'attaque ne dépasse pas 100.
+            this.niveauAttaque = 100; 
         }
     }
 
@@ -31,6 +31,7 @@ public abstract class Arme {
     public String getNom() {
         return nom;
     }
+    
 
     @Override
     public String toString() {

@@ -7,6 +7,9 @@
  */
 package tp3_heroic_fantasy_fromont;
 
+import Personnage.Guerrier;
+import Personnage.Personnage;
+import Personnage.Magicien;
 import Armes.Arme;
 import Armes.Epee;
 import Armes.Baton;
@@ -31,8 +34,51 @@ public class TP3_Heroic_Fantasy_FROMONT {
         armes.add(durandal);
         armes.add(chene);
         armes.add(charme);
-        for (Arme arme : armes) {
-            System.out.println(arme);
+          for (int i = 0; i < armes.size(); i++) {
+        Arme arme = armes.get(i);
+        System.out.println(arme);
+        System.out.println(); 
         }
+          
+          
+        Magicien gandalf = new Magicien("Gandalf", 65, true);
+        Magicien garcimore = new Magicien("Garcimore", 44, false);
+        Guerrier conan = new Guerrier("Conan", 78, false);
+        Guerrier lannister = new Guerrier("Lannister", 45, true);
+        ArrayList<Personnage> personnages = new ArrayList<>();
+        personnages.add(gandalf);
+        personnages.add(garcimore);
+        personnages.add(conan);
+        personnages.add(lannister);
+        for (Personnage personnage : personnages) {
+            System.out.println(personnage);
+            System.out.println(); // Séparateur entre les personnages
+        }
+        Guerrier guerrier = new Guerrier("Arthur", 78, false);
+        Magicien magicien = new Magicien("Lancelot", 65, true);
+
+        Arme baton1 = new Baton("Bâton 1", 4, 5);
+        Arme epee1 = new Epee("Épée 1", 7, 5);
+        Arme epee2 = new Epee("Épée 2", 5, 4);
+        Arme baton2 = new Baton("Bâton 2", 6, 6);
+        Arme baton3 = new Baton("Bâton 3", 3, 4);
+
+        guerrier.ajouterArme(baton1);
+        guerrier.ajouterArme(epee1);
+        guerrier.ajouterArme(epee2);
+
+        magicien.ajouterArme(baton2);
+        magicien.ajouterArme(baton3);
+        magicien.ajouterArme(epee1);
+
+        guerrier.equiperArme("Épée 1");
+
+        int nombreArmesPreferees = magicien.compterArmesDePredilection();
+        System.out.println(magicien.getNom() + " possède " + nombreArmesPreferees + " armes de prédilection.");
+
+        System.out.println(guerrier);
+        System.out.println();
+        System.out.println(magicien);
+    
     }
 }
