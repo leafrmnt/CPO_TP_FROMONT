@@ -41,9 +41,16 @@ public class Magicien extends Personnage{
         }
         return i;
     }
+    public void seFatiguer() {
+    niveauVie -= 20;
+    }
+
     @Override
     public void finalize() throws Throwable {
         nombreMagiciens--;
         super.finalize();
+    }
+   public boolean estVivant() {
+    return niveauVie > 0; 
     }
 }

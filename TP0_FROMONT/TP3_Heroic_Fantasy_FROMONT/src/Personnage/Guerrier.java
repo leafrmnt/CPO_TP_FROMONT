@@ -22,12 +22,18 @@ public class Guerrier extends Personnage  {
     public void modifCheval(boolean Cheval) {
         this.Cheval = Cheval;
     }
+    public void seFatiguer() {
+    niveauVie -= 20;
+    }
+
     @Override
     public void finalize() throws Throwable {
         nombreGuerriers--;
         super.finalize();
     }
+
+    public boolean estVivant() {
+    return niveauVie > 0; 
+    }
 }
  
-    
-
