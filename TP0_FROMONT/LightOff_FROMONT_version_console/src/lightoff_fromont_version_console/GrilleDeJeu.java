@@ -102,4 +102,30 @@ public class GrilleDeJeu {
         }
         return false; 
     }
+     @Override
+    public String toString() {
+        StringBuilder gridString = new StringBuilder();
+
+        // Ajouter des indices pour les colonnes
+        gridString.append("  ");
+        for (int j = 0; j < nbColonnes; j++) {
+            gridString.append(j).append(" ");
+        }
+        gridString.append("\n");
+
+        // Parcourir la grille et ajouter "X" ou "O" en fonction de l'état de chaque cellule
+        for (int i = 0; i < nbLignes; i++) {
+            gridString.append(i).append(" ");
+            for (int j = 0; j < nbColonnes; j++) {
+                if (matriceCellules[i][j].getetat(true)) {
+                    gridString.append("X ");
+                } else {
+                    gridString.append("O ");
+                }
+            }
+            gridString.append("\n");
+        }
+
+        return gridString.toString();
+    }
 }

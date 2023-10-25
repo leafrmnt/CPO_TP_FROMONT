@@ -15,7 +15,7 @@ public class CelluleLumineuse {
         this.etat = false;
     }
 
-    public boolean getetat() {
+    public boolean getetat(boolean etat) {
         return etat;
     }
     public void activerCellule() {
@@ -24,6 +24,11 @@ public class CelluleLumineuse {
     public void eteindreCellule() {
        this.etat= false;
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean estEteint() {
         return !this.etat;   
     }
