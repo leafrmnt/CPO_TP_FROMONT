@@ -5,7 +5,7 @@
 package lightoff_fromont_version_console;
 import java.util.Random;
 /**
- *
+ * grille Celulles lumineuses
  * @author leafr
  */
 public class GrilleDeJeu {
@@ -13,12 +13,20 @@ public class GrilleDeJeu {
      int nbLignes;
      int nbColonnes;
 
+    /**
+     *grille cellules lumineuses de p lignes et p colonnes
+     * @param p_nbLignes
+     * @param p_nbColonnes
+     */
     public GrilleDeJeu(int p_nbLignes, int p_nbColonnes) {
-        this.nbLignes = nbLignes;
-        this.nbColonnes = nbColonnes;  
+        this.nbLignes = p_nbLignes;
+        this.nbColonnes = p_nbColonnes;  
         genererNouvelleMatriceCellulesLumineuses();
     }
         
+    /**
+     *
+     */
     public void  genererNouvelleMatriceCellulesLumineuses() {
         this.matriceCellules = new CelluleLumineuse[nbLignes][nbColonnes];
         for (int i = 0; i < nbLignes; i++) {
@@ -27,6 +35,10 @@ public class GrilleDeJeu {
             }
         }  
     }
+
+    /**
+     *éteint toutes les cellules etat=eteint
+     */
     public void eteindreToutesLesCellules() {
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
@@ -34,98 +46,120 @@ public class GrilleDeJeu {
             }
         }
     }
+    /**
+     * active de manière aléatoire une ligne, une colonne ou une diagonale
+     */
     public void activerLigneColonneOuDiagonaleAleatoire() {
         Random random = new Random();
-        boolean activerLigne = random.nextBoolean();
-        boolean activerColonne = random.nextBoolean();
-        if (activerLigne) {
+        int rand = random.nextInt(3);               
+        if (rand == 1) {
+            int colonneAleatoire = random.nextInt(nbColonnes);      
+            activerColonneDeCellules(colonneAleatoire);         
+        } else if (rand == 2) {
             int ligneAleatoire = random.nextInt(nbLignes);
-            for (int j = 0; j < nbColonnes; j++) {
-                matriceCellules[ligneAleatoire][j].activerCellule();
-            }
-        } else if (activerColonne) {
-            int ColonneAleatoire = random.nextInt(nbColonnes);
-            for (int i=0; i< nbLignes; i++) {
-                 matriceCellules[ColonneAleatoire][i].activerCellule();
-            }
+            activerLigneDeCellules(ligneAleatoire);
         } else {
-            for (int i = 0; i < Math.min(nbLignes, nbColonnes); i++) {
-                matriceCellules[i][i].activerCellule();
+            int rand2 = random.nextInt(2);
+            if (rand2 == 0) {
+                activerDiagonaleDescendante();
+            } else {
+                activerDiagonaleDescendante();
             }
         }
     }
-    
-    public void melangerMatriceAleatoirement(int nbTours) {   
+
+    /**
+     * A partir d'un nbTours génère cellules lumineuses aléatoirement
+     * @param nbTours
+     */
+    public void melangerMatriceAleatoirement(int nbTours) {
         Random random = new Random();
-        nbTours =0;
-        for (int i = 0; i < nbLignes; i++) {
-            for (int j = 0; j < nbColonnes; j++) {
-                matriceCellules[i][j].eteindreCellule();
-            }
-        }
-        for (int tour = 0; tour<nbTours; tour++) {
-            activerLigneColonneOuDiagonaleAleatoire(); 
+
+        for (int tour = 0; tour < nbTours; tour++) {
+            int i = random.nextInt(nbLignes);
+            int j = random.nextInt(nbColonnes);
+            matriceCellules[i][j].activerCellule();
         }
     }
+
+    /**
+     *active toutes les cellules d'une ligne spécifique de la grille
+     * @param idLigne
+     */
     public void activerLigneDeCellules(int idLigne) {
-        if (idLigne >= 0 && idLigne < nbLignes) {
             for (int j = 0; j < nbColonnes; j++) {
                 matriceCellules[idLigne][j].activerCellule();
             }
         }
-    }
+    
+    /**
+     *active toutes les cellules d'une colonne spécifique de la grille
+     * @param idColonne
+     */
     public void activerColonneDeCellules(int idColonne) {
-        if (idColonne >= 0 &&  idColonne < nbColonnes) {
             for (int i = 0; i < nbLignes; i++) {
                 matriceCellules[i][idColonne].activerCellule();
-            }
-        }
+            }   
     }
+
+    /**
+     *active la diagonale descendante de la grille
+     */
     public void activerDiagonaleDescendante() {
             for (int i = 0; i < Math.min(nbLignes, nbColonnes); i++) {
                 matriceCellules[i][i].activerCellule();
             }
     }
+
+    /**
+     *active la diagonale montante de la grille
+     */
     public void activerDiagonaleMontante() {
             for (int i = 0; i < Math.min(nbLignes, nbColonnes); i++) {
                 matriceCellules[nbLignes - 1 - i][i].activerCellule();
-            }
-        
+            } 
     }
+
+    /**
+     *vérifie si toutes les cellules de la grille sont éteintes, renvoit true=toutes éteintes  false= pas toutes éteintes
+     * @return
+     */
     public boolean cellulesToutesEteintes() {
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                if (matriceCellules[i][j].getetat(true)) {
-                    return true; 
+                if (matriceCellules[i][j].estEteint()) {
+                    return false; 
                 }
             }
         }
-        return false; 
+        return true; 
     }
-     @Override
+
+    /**
+     * affiche état de la grille
+     * @return
+     */
+    @Override
     public String toString() {
-        StringBuilder gridString = new StringBuilder();
-
-        // Ajouter des indices pour les colonnes
-        gridString.append("  ");
+        String gridString = "";
+        gridString += "   |";
         for (int j = 0; j < nbColonnes; j++) {
-            gridString.append(j).append(" ");
+            gridString += " " + (j + 1) + " |";
         }
-        gridString.append("\n");
-
-        // Parcourir la grille et ajouter "X" ou "O" en fonction de l'état de chaque cellule
+        gridString += "\n";
+        gridString += "-".repeat(4 * (nbColonnes + 1)) + "\n";
         for (int i = 0; i < nbLignes; i++) {
-            gridString.append(i).append(" ");
-            for (int j = 0; j < nbColonnes; j++) {
-                if (matriceCellules[i][j].getetat(true)) {
-                    gridString.append("X ");
-                } else {
-                    gridString.append("O ");
-                }
+            gridString += " " + (i + 1) + " |";
+        for (int j = 0; j < nbColonnes; j++) {
+            if (matriceCellules[i][j].getetat()) {
+                gridString += " X |";
+            } else {
+                gridString += " O |";
             }
-            gridString.append("\n");
         }
-
-        return gridString.toString();
+        gridString += "\n";
+        gridString += "-".repeat(4 * (nbColonnes + 1)) + "\n";
+    }
+    return gridString;
     }
 }
